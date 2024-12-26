@@ -1,0 +1,2 @@
+# LinkedList
+Code zu LinkedList
