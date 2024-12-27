@@ -1,17 +1,32 @@
 public class LinkedList {
 
-    //Das wäre unser Baukasten für einen Knoten - Struktur für Daten und Pointer auf next
-    private static class Node {
+       /*
+->    - - - Den Knoten class erstellen - - -
+    1. Ein Baukasten für Knoten erstellen (beinhaltet data und Zeiger für nächsten Knoten)
+    2. Knoten initialisieren, dass der Knoten den übergebenen data übernimmt und der Zeiger auf nächsten bzw. leeren Knoten zeigt
+
+->    - - - Head Node erstellen - - -
+    3. Head Knoten erstellen
+
+->    - - - Head Node in LinkedList hinzufügen - - -
+    4. Dieser Head Knoten wird in unser Baukasten für LinkedList anschließend hinzugefügt, erstelle aber erstmal Baukasten dafür
+    5. Den Head Knoten in die verkettete Liste hinzufügen bzw. hinein initialisieren
+     */
+
+    //------------------------------
+    //Baukasten für einen Knoten
+    private class Node {
         int data;
         Node next;
 
-        Node (int data) {
+        Node(int data) {
             this.data = data;
-            this.next = null; //Standard-Wert, da next noch nicht bekannt ist
+            this.next = null;
         }
     }
+    //------------------------------
 
-    //Baukasten für unsere Verkettete Liste - Struktur für head
+    //Eigentliche Linked Liste
     private Node head;
     private LinkedList() {
         this.head = null; //Standard-Wert, da wir erst jetzt beginnen und unsere Daten noch nicht existieren
@@ -70,11 +85,12 @@ public class LinkedList {
     //----- DELETE METHODEN -----//
 
     public void deleteFirst() {
-        Node exist = head;
-
+        /*
         if (head == null) {
             return;
         }
+         */
+
         head = head.next; //head wird gelöscht und verweist nun auf head.next
     }
 
@@ -96,9 +112,9 @@ public class LinkedList {
         //Hier gehen wir durch die Liste so lange durch, bis der next zeiger auf null zeigt UND der next vom next vom zeiger ebenfalls
         //auf null zeigt, weil dann wären wir uns sicher, dass dies wirklich der letzte Knoten ist
         if (exist.next != null && exist.next.next != null) {
-            exist = exist.next;
+            exist = exist.next; //ZeigerKnoten wird aktualisiert und nimmt den nächsten Knoten an
         }
-        exist.next = null;
+        exist.next = null; //Der nächste Knoten vom aktualisierten Knoten ist nun gelöscht
     }
 
     public void deleteAtIndex(int index) {
